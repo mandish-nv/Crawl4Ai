@@ -1,3 +1,39 @@
+import re
+
+def extract_pvid(url):
+    """
+    Extract the ___pvid--<value> part from the URL.
+    """
+    match = re.search(r"___pvid--([^_]+)", url)
+    return match.group(1) if match else None
+
+def normalize_url(url):
+    """
+    Remove ___pvid--<value> from URL for comparison.
+    """
+    return re.sub(r"___pvid--[^_]+", "", url)
+
+def process_urls(file_path="filtered_urls.txt"):
+    with open(file_path, "r", encoding="utf-8") as f:
+        urls = [line.strip() for line in f if line.strip()]
+
+    seen = {}
+    pvid_values = {}
+
+    for url in urls:
+        norm = normalize_url(url)
+        if norm not in seen:
+            seen[norm] = url
+            pvid_values[norm] = extract_pvid(url) or ""
+
+    # Overwrite filtered_url.txt with first occurrences
+    with open(file_path, "w", encoding="utf-8") as f:
+        for url in seen.values():
+            f.write(url + "\n")
+
+    print(f"✅ Cleaned file written with {len(seen)} unique URLs.")
+    print("✨ pvid values saved to pvid_value.txt")
+
 import asyncio
 import sys
 import re
@@ -49,6 +85,8 @@ async def deep_crawl_daraz():
                 filtered_count += 1
         
         print(f"\n--- Crawl complete. Found {filtered_count} matching page(s). ---")
+        
+    process_urls()
 
 
 if __name__ == "__main__":
