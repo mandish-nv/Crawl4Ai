@@ -1,0 +1,17 @@
+https://www.daraz.com.np/catalog/?spm=a2a0e.searchlist.cate_6.5.6ca355a3zrHeVR&q=Smartphones&from=hp_categories&src=all_channel
+https://www.daraz.com.np/catalog?clicktrackinfo=matchType--99___wh_pid--___type--cli___scene--diwen___bucket--0___spm_id--hint.hp.sbox___result--watch+for+boys___textId--7082100923954174491___score--0.628027___itemId--5___abtest--___pvid--5094fc12-dcda-41f2-92e5-f9d102d81986___voucherId--___scoreChain--0.000628%2C0.000000%2C0.000000___algoFeatures--___scm--1007.25945.379337.0___ifMannual--N&from_searchbox_hotwords=1&q=watch+for+boys
+https://www.daraz.com.np/catalog?q=Smartphones
+https://www.daraz.com.np/catalog?from=hp_categories&page=5&q=Smartphones&service=all_channel&spm=a2a0e.searchlist.cate_6.5.6ca355a3zrHeVR&src=all_channel
+https://www.daraz.com.np/catalog?clicktrackinfo=matchType--99___wh_pid--___type--cli___scene--diwen___bucket--0___spm_id--hint.hp.sbox___result--mobile+phone___textId--5704130092250749346___score--0.852477___itemId--5___abtest--___pvid--5094fc12-dcda-41f2-92e5-f9d102d81986___voucherId--___scoreChain--0.000852%2C0.000000%2C0.000000___algoFeatures--___scm--1007.25945.379337.0___ifMannual--N&from_searchbox_hotwords=1&q=mobile+phone
+https://www.daraz.com.np/catalog?clicktrackinfo=matchType--99___wh_pid--___type--cli___scene--diwen___bucket--0___spm_id--hint.hp.sbox___result--laptop___textId--8604400042594750176___score--0.820081___itemId--5___abtest--___pvid--5094fc12-dcda-41f2-92e5-f9d102d81986___voucherId--___scoreChain--0.000820%2C0.000000%2C0.000000___algoFeatures--___scm--1007.25945.379337.0___ifMannual--N&from_searchbox_hotwords=1&q=laptop
+https://www.daraz.com.np/catalog?from=hp_categories&page=3&q=Smartphones&service=all_channel&spm=a2a0e.searchlist.cate_6.5.6ca355a3zrHeVR&src=all_channel
+https://www.daraz.com.np/catalog?clicktrackinfo=matchType--99___wh_pid--___type--cli___scene--diwen___bucket--0___spm_id--hint.hp.sbox___result--iphone___textId--5414500811621422515___score--0.653896___itemId--5___abtest--___pvid--5094fc12-dcda-41f2-92e5-f9d102d81986___voucherId--___scoreChain--0.000654%2C0.000000%2C0.000000___algoFeatures--___scm--1007.25945.379337.0___ifMannual--N&from_searchbox_hotwords=1&q=iphone
+https://www.daraz.com.np/catalog?from=hp_categories&q=Smartphones&spm=a2a0e.searchlist.cate_6.5.6ca355a3zrHeVR&src=all_channel
+https://www.daraz.com.np/catalog?clicktrackinfo=matchType--99___wh_pid--___type--cli___scene--diwen___bucket--0___spm_id--hint.hp.sbox___result--shoes+for+men___textId--8992023220079951449___score--1.000000___itemId--5___abtest--___pvid--5094fc12-dcda-41f2-92e5-f9d102d81986___voucherId--___scoreChain--0.001000%2C0.000000%2C0.000000___algoFeatures--___scm--1007.25945.379337.0___ifMannual--N&from_searchbox_hotwords=1&q=shoes+for+men
+https://www.daraz.com.np/catalog?from=hp_categories&page=4&q=Smartphones&service=all_channel&spm=a2a0e.searchlist.cate_6.5.6ca355a3zrHeVR&src=all_channel
+https://www.daraz.com.np/catalog?from=hp_categories&page=102&q=Smartphones&service=all_channel&spm=a2a0e.searchlist.cate_6.5.6ca355a3zrHeVR&src=all_channel
+https://www.daraz.com.np/catalog?from=hp_categories&page=2&q=Smartphones&service=all_channel&spm=a2a0e.searchlist.cate_6.5.6ca355a3zrHeVR&src=all_channel
+https://www.daraz.com.np/catalog?from=hp_categories&q=Smartphones&service=all_channel&spm=a2a0e.searchlist.cate_6.5.6ca355a3zrHeVR&src=all_channel
+https://www.daraz.com.np/catalog?q=iphone
+https://www.daraz.com.np/catalog?q=laptop
+https://www.daraz.com.np/catalog?q=mobile+phone
