@@ -57,4 +57,9 @@ Deep crawling -> Dynamic exploration, Selective extraction
 URL seeding -> Bulk processing, resource efficiency (low resource, fast)
 
 
+BrowserConfig – Dictates how the browser is launched and behaves (e.g., headless or visible, proxy, user agent).
+CrawlerRunConfig – Dictates how each crawl operates (e.g., caching, extraction, timeouts, JavaScript code to run, etc.).
+LLMConfig - Dictates how LLM providers are configured. (model, api token, base url, temperature etc.)
+
+
 129
