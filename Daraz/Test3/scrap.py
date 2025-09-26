@@ -3,40 +3,8 @@ import base64
 import os
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, ProxyConfig, ProxyRotationStrategy
 from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-
-
-def process_images(div, base_url):
-    """
-    Fix image URLs inside a div:
-    - Handle lazy-loaded images
-    - Replace base64 placeholders with actual URLs if possible
-    - Convert relative URLs to absolute
-    """
-    for img in div.find_all("img"):
-        for attr in ["data-src", "data-lazy-src", "data-original"]:
-            if img.get(attr):
-                img["src"] = img[attr]
-                break
-
-        if img.get("src") and img["src"].startswith("//"):
-            img["src"] = "https:" + img["src"]
-        elif img.get("src") and img["src"].startswith("/"):
-            img["src"] = urljoin(base_url, img["src"])
-
-        if img.get("src") and img["src"].startswith("data:image"):
-            try:
-                header, encoded_data = img["src"].split(",", 1)
-                img_data = base64.b64decode(encoded_data)
-                os.makedirs("images", exist_ok=True)
-                filename = os.path.join("images", f"{hash(encoded_data)}.png")
-                with open(filename, "wb") as f:
-                    f.write(img_data)
-                img["src"] = urljoin(base_url, filename)
-            except Exception as e:
-                print(f"⚠️ Failed to process base64 image: {e}")
-
 
 async def scrape_url(semaphore, crawler, url, config):
     async with semaphore:
@@ -52,10 +20,10 @@ async def scrape_url(semaphore, crawler, url, config):
                 content = ""
                 if divs:
                     for div in divs:
-                        process_images(div, url)
                         content += str(div) + "\n\n"
                 else:
                     print(f"⚠️ No <div class='Ms6aG'> found in {url}")
+                    print(html)
                 return content
 
             else:
@@ -77,13 +45,53 @@ async def scrape_filtered_urls_throttled(concurrency_limit=5):
         return
 
     config = CrawlerRunConfig(
-        markdown_generator=DefaultMarkdownGenerator(),
-        delay_before_return_html=8.0,  # Wait for page load
+        # --- LAZY LOADING & DELAY HANDLING ---
+        delay_before_return_html=10.0,   # Increased wait time for rendering
+        scroll_delay=1.5,                # Add small pauses during scroll to mimic human
+        max_scroll_steps=10,              # Limit scrolls to avoid infinite loops
         js_code="""
-            const element = document.querySelector('.Ms6aG');
-            if (element) { return true; }
-            return false;
-        """
+            // Scroll to bottom to trigger lazy loading
+            window.scrollTo(0, document.body.scrollHeight); 
+            return true;
+        """,
+
+        # --- CONTENT TARGETING ---
+        # css_selector='.Ms6aG',
+        markdown_generator=DefaultMarkdownGenerator(),
+        # target_elements=['.Ms6aG'],
+        only_text=False,
+
+        # --- ROBUSTNESS & CLEANING ---
+        scan_full_page=True,
+        excluded_tags=['script', 'style', 'header', 'footer', 'nav', 'aside'],
+        parser_type="lxml",
+
+        # # --- ANTI-SCRAPING / STEALTH OPTIONS ---
+        # proxy_config=ProxyConfig(
+        #     server="",  # Use rotating proxies
+        #     username="",
+        #     password="",
+        #     ip=""
+        # ),
+        # proxy_rotation_strategy=ProxyRotationStrategy(
+            
+        #     ),     # Rotate IPs between requests
+
+        user_agent_mode="rotate",                  # Rotate user agents
+        user_agent_generator_config={
+            "device_types": ["desktop", "mobile"], # Mimic real browsers
+            "browsers": ["chrome", "firefox", "edge"],
+        },
+
+        simulate_user=True,                        # Simulate mouse/keyboard behavior
+        override_navigator=False,                   # Fake navigator.webdriver=false
+        adjust_viewport_to_content=True,           # Match viewport to page
+
+        # check_robots_txt=False,                    # Avoid blocking if robots.txt disallows
+        
+        # --- TIMING BEHAVIORS (avoid patterns) ---
+        mean_delay=2.0,                            # Random delay between actions
+        max_range=5.0,
     )
 
     scraped_content = ""
@@ -104,5 +112,4 @@ async def scrape_filtered_urls_throttled(concurrency_limit=5):
 
 
 if __name__ == "__main__":
-    # Set concurrency limit to 5 by default
     asyncio.run(scrape_filtered_urls_throttled(concurrency_limit=5))
