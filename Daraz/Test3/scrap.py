@@ -34,7 +34,7 @@ async def scrape_url(semaphore, crawler, url, config):
             return ""
 
 
-async def scrape_filtered_urls_throttled(concurrency_limit=5):
+async def scrape_filtered_urls_throttled(concurrency_limit=1):
     print(f"🚀 Starting throttled scraping with concurrency limit: {concurrency_limit}")
 
     with open("filtered_urls.txt", "r", encoding="utf-8") as f:
@@ -112,4 +112,4 @@ async def scrape_filtered_urls_throttled(concurrency_limit=5):
 
 
 if __name__ == "__main__":
-    asyncio.run(scrape_filtered_urls_throttled(concurrency_limit=5))
+    asyncio.run(scrape_filtered_urls_throttled(concurrency_limit=1))

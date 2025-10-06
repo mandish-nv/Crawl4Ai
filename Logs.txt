@@ -1,0 +1,22 @@
+1. 
+Study docx. of crawl4ai
+Setup anaconda env
+Basic program execution
+Research on existing works
+
+2.
+Data crawl & scrap (daraz) -> .csv
+Data crawl & scrap (daraz) -> .md (incomplete)
+
+3. 
+Filtered data crawl for duplicates
+Scrapped <html> contents (data scrap) and stored in .md file and filtered based on class name
+Integrated gemini (LLM) & stored in .json with chunking and markdown
+
+4.
+Integrated crawl, scrap and llm programs into one
+Problem with multiple links
+
+5.
+Completed crawl, scrap and llm program
+Planning for network data scrapping
