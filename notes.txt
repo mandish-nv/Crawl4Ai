@@ -62,4 +62,10 @@ CrawlerRunConfig – Dictates how each crawl operates (e.g., caching, extraction
 LLMConfig - Dictates how LLM providers are configured. (model, api token, base url, temperature etc.)
 
 
+CrawlResult Attributes:
+['url', 'html', 'fit_html', 'success', 'cleaned_html', 'media', 'links', 'downloaded_files', 'js_execution_result', 'screenshot', 'pdf', 'mhtml', 'extracted_content', 'metadata', 'error_message', 'session_id', 'response_headers', 'status_code', 'ssl_certificate', 'dispatch_result', 'redirected_url', 'network_requests', 'console_messages', 'tables']
+
+
+
+
 129
