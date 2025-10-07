@@ -47,11 +47,11 @@ async def crawlScrap():
         # ==============================================================================
         #                     BROWSER TIMING & DYNAMIC RENDERING
         # ==============================================================================
-        # page_timeout = 60,                         # Maximum time (in seconds) to wait for the page to load.
-        delay_before_return_html = 10.0,            # Time (in seconds) to wait *after* the page is considered loaded and JS is executed.
+        # page_timeout = 30,                        # Maximum time (in seconds) to wait for the page to load.
+        delay_before_return_html = 5.0,            # Time (in seconds) to wait *after* the page is considered loaded and JS is executed.
         mean_delay = 2.0,                          # Average random delay (in seconds) between requests to simulate human behavior.
         max_range = 6.0,                           # The maximum variation (randomness) for the delay calculation.
-        semaphore_count = 3,                       # Limits the number of concurrent URLs scraped at once.
+        semaphore_count = 5,                       # Limits the number of concurrent URLs scraped at once.
         js_code = """
             // Scroll to bottom to trigger lazy loading
             window.scrollTo(0, document.body.scrollHeight); 
@@ -75,8 +75,8 @@ async def crawlScrap():
         exclude_social_media_links = True,        # If True, filters out links pointing to social media domains.
         exclude_domains = [],                      # List of domains to exclude from the crawl.
         deep_crawl_strategy = BFSDeepCrawlStrategy(
-            max_pages=1000,
-            max_depth=3,
+            max_pages=300,
+            max_depth=2,
             include_external=False,
             # filter_chain=FilterChain([url_filter])
         ),  
