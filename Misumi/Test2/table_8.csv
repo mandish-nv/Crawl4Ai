@@ -1,0 +1,16 @@
+Alteration Code,Alteration Details,Fixed Dimension,Applicable Conditions,Ordering Example
+LKC,"L Dimension Tolerance Change
+
+Both End Threaded with Undercut, Cross-Drilled Hole, Wrench Flats Related Image 1_Alteration Detail","· L < 200 >> L ± 0.03
+· 200 ≤ L < 500 >> L ± 0.05
+· L ≥ 500 >> L ± 0.1",[ ! ] L Dimension can be specified in 0.1 mm increments,SAFU30-300.5-F40-M20-T48-N16-SC20-LKC
+SX,"Add Wrench Flat at two locations
+
+Both End Threaded with Undercut, Cross-Drilled Hole, Wrench Flats Related Image 2_Alteration Detail","D | W | ℓ1 | | D | W | ℓ1
+8 | 7 | 8 | | 20 | 17 | 10
+10 | 8 | 8 | | 25 | 22 | 10
+12 | 10 | 10 | | 30 | 27 | 15
+13 | 11 | 10 | | 35 | 30 | 15
+15 | 13 | 10 | | 40 | 36 | 20
+16 | 14 | 10 | | 50 | 41 | 20
+18 | 16 | 10 | | | |",,

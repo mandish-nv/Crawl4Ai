@@ -183,7 +183,7 @@ async def crawlScrap():
 
     async with AsyncWebCrawler(config=browser_config) as crawler:
         results = await crawler.arun(
-            url="https://www.mcmaster.com/socket-head-screws-2~/socket-head-screws-2~/alloy-steel-socket-head-screws-8/",
+            url="https://us.misumi-ec.com/vona2/detail/110310764549/?searchFlow=results2products&KWSearch=linear%20shaft&list=PageCategory",
             config=run_config,
             deep_crawl=False
         )
@@ -192,27 +192,39 @@ async def crawlScrap():
             total = len(results)
             print(f"✅ Total pages crawled: {total}")
 
-            with open("markdown.md", "w", encoding="utf-8") as m, open("filtered_urls.txt", "w", encoding="utf-8") as f:
+
+            # Open the markdown file for writing (will create it if it doesn't exist)
+            with open("markdown.md", "w", encoding="utf-8") as m:
                 for i, result in enumerate(results, start=1):
                     if hasattr(result, "url") and result.url:
-                        print(f"✅ [{i}/{total}] Found: {result.url}")
-                        f.write(result.url + "\n")
+                        print(f"✅ [{i}/{total}] Processing: {result.url}")
+
                     if hasattr(result, "html") and result.html:
                         html = result.html
-                        print(html)
                         soup = BeautifulSoup(html, "html.parser")
 
-                        divs = soup.find_all("div", class_="hz")
+                        # --- MODIFICATION START ---
+                        # Select only <table> elements within the .l-adaptive-content container
+                        tables = soup.select(".l-adaptive-content table")
 
                         content = ""
-                        if divs:
-                            for div in divs:
-                                content += str(div) + "\n\n"
-                        else:
-                            print(f"⚠️ No <div class='hz'> found in {result.url}")
-                        m.write(content + "\n\n---\n\n")
 
-            print("✅ Crawl complete. Results saved to 'filtered_urls.txt' and 'markdown.md'.")
+                        # Only include the string representation of the <table> elements
+                        if tables:
+                            print(f"   Found {len(tables)} table(s). Storing...")
+                            for table in tables:
+                                # Store the complete HTML of the table
+                                content += str(table) + "\n\n"
+                        else:
+                            print(f"⚠️ No matching <table> found in {result.url}")
+                        # --- MODIFICATION END ---
+
+                        # Write content (the tables' HTML) to the markdown file
+                        # We use the '---' separator for organization
+                        if content:
+                            m.write(f"<!-- Tables from: {result.url} -->\n")
+                            m.write(content)
+                            m.write("\n\n---\n\n")
 
         else:
             print("❌ Crawl failed or returned no results.")

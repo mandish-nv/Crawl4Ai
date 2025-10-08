@@ -109,51 +109,51 @@
 )
 
 
-  browser_config = BrowserConfig(
-    browser_type = "chromium"                 # The type of browser engine to use (e.g., 'chromium', 'firefox', 'webkit'). Chromium is usually preferred for compatibility.
-    headless = True                           # Run the browser without a visible GUI (faster and less resource-intensive).
-    browser_mode = "dedicated"                # How the browser is managed (e.g., a fresh instance for each run).
-    use_managed_browser = False               # Whether to rely on a cloud-managed browser service. False for local scraping.
-    cdp_url = None                            # Connects to an external browser instance via the Chrome DevTools Protocol URL. 'None' means launching locally.
-    use_persistent_context = False            # Whether to reuse the same browser context across multiple runs (useful for sessions, but False for a clean slate).
-    user_data_dir = None                      # Path to a directory for browser profile data (cookies, cache). 'None' uses a temporary profile.
-    chrome_channel = "chromium"               # The specific distribution channel of Chrome to use.
-    channel = "chromium"                      # Alias for chrome_channel.
-    proxy = None                              # Single proxy URL string (e.g., 'http://user:pass@ip:port'). 'None' uses the local IP.
-    proxy_config = None                       # A more complex dictionary for configuring multiple proxies or advanced settings. 'None' uses the local IP.
-    viewport_width = 1920                     # The width of the browser window in pixels. A large size often prevents mobile rendering.
-    viewport_height = 1080                    # The height of the browser window in pixels.
-    viewport = None                           # Overrides width/height with a full dictionary configuration. 'None' uses width/height.
-    accept_downloads = False                  # Prevents the browser from attempting to download files.
-    downloads_path = None                     # The directory where downloads should be saved (irrelevant if accept_downloads is False).
-    storage_state = None                      # State data (cookies, local storage) to load into the new browser context (useful for logins).
-    ignore_https_errors = True                # Allows connection to sites with self-signed or invalid SSL certificates.
-    java_script_enabled = True                # Essential for rendering modern dynamic websites.
-    sleep_on_close = False                    # Keeps the browser open for a specified duration after the task completes (for debugging).
-    verbose = False                           # Reduces console output for a cleaner scraping process.
-    cookies = None                            # A list of cookie dictionaries to set before navigating.
-    headers = None                            # A dictionary of HTTP headers to set for requests (User-Agent is typically handled separately).
-    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" # A common, modern, desktop User-Agent string.
-    user_agent_mode = "manual"                # Specifies that the user_agent should be used directly.
-    user_agent_generator_config = {}          # Configuration for an automated User-Agent rotation or generation strategy.
-    text_mode = False                         # If True, might instruct the browser to suppress rendering of non-text content (less reliable).
-    light_mode = False                        # If True, might enable resource-saving modes (can sometimes break sites).
-    extra_args = ['--no-sandbox', '--disable-dev-shm-usage'] # Additional command-line arguments to pass to the browser executable (common for container environments).
-    debugging_port = 9222                     # The port for the remote debugging protocol.
-    host = "localhost"                        # The host address where the browser is running or where to look for a CDP connection.
-    enable_stealth = True                     # Activates techniques (like those from Puppeteer/Playwright stealth plugins) to prevent bot detection.
-  )
+browser_config = BrowserConfig(
+  browser_type = "chromium"                 # The type of browser engine to use (e.g., 'chromium', 'firefox', 'webkit'). Chromium is usually preferred for compatibility.
+  headless = True                           # Run the browser without a visible GUI (faster and less resource-intensive).
+  browser_mode = "dedicated"                # How the browser is managed (e.g., a fresh instance for each run).
+  use_managed_browser = False               # Whether to rely on a cloud-managed browser service. False for local scraping.
+  cdp_url = None                            # Connects to an external browser instance via the Chrome DevTools Protocol URL. 'None' means launching locally.
+  use_persistent_context = False            # Whether to reuse the same browser context across multiple runs (useful for sessions, but False for a clean slate).
+  user_data_dir = None                      # Path to a directory for browser profile data (cookies, cache). 'None' uses a temporary profile.
+  chrome_channel = "chromium"               # The specific distribution channel of Chrome to use.
+  channel = "chromium"                      # Alias for chrome_channel.
+  proxy = None                              # Single proxy URL string (e.g., 'http://user:pass@ip:port'). 'None' uses the local IP.
+  proxy_config = None                       # A more complex dictionary for configuring multiple proxies or advanced settings. 'None' uses the local IP.
+  viewport_width = 1920                     # The width of the browser window in pixels. A large size often prevents mobile rendering.
+  viewport_height = 1080                    # The height of the browser window in pixels.
+  viewport = None                           # Overrides width/height with a full dictionary configuration. 'None' uses width/height.
+  accept_downloads = False                  # Prevents the browser from attempting to download files.
+  downloads_path = None                     # The directory where downloads should be saved (irrelevant if accept_downloads is False).
+  storage_state = None                      # State data (cookies, local storage) to load into the new browser context (useful for logins).
+  ignore_https_errors = True                # Allows connection to sites with self-signed or invalid SSL certificates.
+  java_script_enabled = True                # Essential for rendering modern dynamic websites.
+  sleep_on_close = False                    # Keeps the browser open for a specified duration after the task completes (for debugging).
+  verbose = False                           # Reduces console output for a cleaner scraping process.
+  cookies = None                            # A list of cookie dictionaries to set before navigating.
+  headers = None                            # A dictionary of HTTP headers to set for requests (User-Agent is typically handled separately).
+  user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" # A common, modern, desktop User-Agent string.
+  user_agent_mode = "manual"                # Specifies that the user_agent should be used directly.
+  user_agent_generator_config = {}          # Configuration for an automated User-Agent rotation or generation strategy.
+  text_mode = False                         # If True, might instruct the browser to suppress rendering of non-text content (less reliable).
+  light_mode = False                        # If True, might enable resource-saving modes (can sometimes break sites).
+  extra_args = ['--no-sandbox', '--disable-dev-shm-usage'] # Additional command-line arguments to pass to the browser executable (common for container environments).
+  debugging_port = 9222                     # The port for the remote debugging protocol.
+  host = "localhost"                        # The host address where the browser is running or where to look for a CDP connection.
+  enable_stealth = True                     # Activates techniques (like those from Puppeteer/Playwright stealth plugins) to prevent bot detection.
+)
 
 
-  llm_config = LLMCongfig(
-    provider = 'openai'                       # The name of the LLM service provider (e.g., 'openai', 'anthropic', 'google').
-    api_token = 'YOUR_API_KEY'                # The secret key required for authenticating with the chosen API provider.
-    base_url = None                           # An optional URL if using a self-hosted or non-standard API endpoint. 'None' uses the provider's default.
-    temperature = 0.3                         # Controls the randomness/creativity of the output. Lower (e.g., 0.3) is better for factual summarization/extraction; higher (e.g., 0.8) for creative tasks.
-    max_tokens = 2048                         # The maximum number of tokens (words/pieces) the model is allowed to generate in its response.
-    top_p = 1.0                               # Nucleus sampling parameter. Lower values (e.g., 0.9) focus output on high-probability tokens; 1.0 is default/no filtering.
-    frequency_penalty = 0.0                   # Penalizes new tokens based on their existing frequency in the text, discouraging repetition. 0.0 means no penalty.
-    presence_penalty = 0.0                    # Penalizes new tokens based on whether they appear in the text so far, encouraging new topics. 0.0 means no penalty.
-    stop = ["\n---", "```"]                   # A list of sequences that, when generated, will cause the model to immediately stop producing tokens (e.g., to prevent code block or section continuation).
-    n = 1                                     # The number of alternative completions to generate for the given prompt. 1 is standard for most applications.
-  )
+llm_config = LLMCongfig(
+  provider = 'openai'                       # The name of the LLM service provider (e.g., 'openai', 'anthropic', 'google').
+  api_token = 'YOUR_API_KEY'                # The secret key required for authenticating with the chosen API provider.
+  base_url = None                           # An optional URL if using a self-hosted or non-standard API endpoint. 'None' uses the provider's default.
+  temperature = 0.3                         # Controls the randomness/creativity of the output. Lower (e.g., 0.3) is better for factual summarization/extraction; higher (e.g., 0.8) for creative tasks.
+  max_tokens = 2048                         # The maximum number of tokens (words/pieces) the model is allowed to generate in its response.
+  top_p = 1.0                               # Nucleus sampling parameter. Lower values (e.g., 0.9) focus output on high-probability tokens; 1.0 is default/no filtering.
+  frequency_penalty = 0.0                   # Penalizes new tokens based on their existing frequency in the text, discouraging repetition. 0.0 means no penalty.
+  presence_penalty = 0.0                    # Penalizes new tokens based on whether they appear in the text so far, encouraging new topics. 0.0 means no penalty.
+  stop = ["\n---", "```"]                   # A list of sequences that, when generated, will cause the model to immediately stop producing tokens (e.g., to prevent code block or section continuation).
+  n = 1                                     # The number of alternative completions to generate for the given prompt. 1 is standard for most applications.
+)

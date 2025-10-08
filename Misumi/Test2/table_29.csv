@@ -1,0 +1,21 @@
+Cleaning Method,Product Part Number,Packaging Type,Effects Compared to Uncleaned Product,Environment (Standard),Use Case and Process
+Degreasing,SL-□□,Anti-rust packing,Oil removal,General environment,Regular assembly process
+Degreasing,SL-□□,Anti-rust packing,Oil removal,General environment,Post battery assembly process
+Precision cleaning,SH-□□,Degassing double packing,"Oil removal
+Dust removal","Clean environment (Class 10 to 1,000)",Battery assembly process
+Precision cleaning,SH-□□,Degassing double packing,"Oil removal
+Dust removal","Clean environment (Class 10 to 1,000)",LCD-related post assembly process
+Precision cleaning,SH-□□,Degassing double packing,"Oil removal
+Dust removal","Clean environment (Class 10 to 1,000)",In-vehicle camera assembly process
+Electrolytic polishing + precision cleaning,SHD-□□,Degassing double packing,"Oil removal
+Dust removal
+Outgas reduction","Vacuum environment
+Clean environment (Class 10 to 1,000)",Pre-semiconductor process
+Electrolytic polishing + precision cleaning,SHD-□□,Degassing double packing,"Oil removal
+Dust removal
+Outgas reduction","Vacuum environment
+Clean environment (Class 10 to 1,000)",Liquid crystal deposition process
+Electrolytic polishing + precision cleaning,SHD-□□,Degassing double packing,"Oil removal
+Dust removal
+Outgas reduction","Vacuum environment
+Clean environment (Class 10 to 1,000)",Pre-OLED process

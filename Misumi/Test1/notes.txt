@@ -1,0 +1,5 @@
+used css selector and foltered table to obtain 5 tables and storein jsonl nd csv file.
+Problems:
+- symbols should be decoded
+- llm processing is slow
+

@@ -1,0 +1,171 @@
+Part Number Type,D,1 mm Increments L,"1 mm Increments F, T",Selection M·N (Coarse),Selection M·N (Coarse)_2,Selection M·N (Coarse)_3,Selection M·N (Coarse)_4,Selection M·N (Coarse)_5,Selection M·N (Coarse)_6,Selection M·N (Coarse)_7,Selection M·N (Coarse)_8,Selection M·N (Coarse)_9,1 mm Increments H,d,(Y) Max.,C
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",8,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",5,6,,,,,,,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",3,500,"0.5
+or Less"
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",10,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",5,6,8,,,,,,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",3,500,"0.5
+or Less"
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",12,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",5,6,8,10,,,,,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",3,500,"0.5
+or Less"
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",13,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",5,6,8,10,12,,,,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",4,500,"0.5
+or Less"
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",15,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",5,6,8,10,12,,,,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",4,500,"0.5
+or Less"
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",16,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",5,6,8,10,12,,,,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",4,500,"0.5
+or Less"
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",18,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",5,6,8,10,12,16,,,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",6,500,"0.5
+or Less"
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",20,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",5,6,8,10,12,16,,,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",6,500,"1.0
+or Less"
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",25,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",5,6,8,10,12,16,20,24,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",7,500,"1.0
+or Less"
+"SL-SSHAM
+SH-SSHAM
+
+SL-PSSHAM
+SH-PSSHAM
+
+SL-RSHAM
+SH-RSHAM
+
+SL-RSSHAM
+SH-RSSHAM",30,25 to 490,"5 ≤ F ≤ M × 3
+5 ≤ T ≤ N × 3
+
+[ ! ] F- (g) ≥ Pitch × 3
+[ ! ] T- (g) ≥ Pitch × 3",,6,8,10,12,16,20,24,,"[ ! ] L ≥ H + d/2 + 2
+[ ! ] H ≥ d/2 + 2",7,500,"1.0
+or Less"
