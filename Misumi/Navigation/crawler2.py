@@ -22,14 +22,15 @@ async def process_url(crawler: AsyncWebCrawler, url: str) -> List[Dict[str, str]
     Open a product page, click the Part Numbers tab, and extract all product links.
     """
     js_click_code = """
-    (async () => {
-        const tab = [...document.querySelectorAll('a')]
-            .find(a => a.textContent.trim() === 'Part Numbers');
-        if (tab) {
-            tab.click();
-            await new Promise(r => setTimeout(r, 2000));
+    const delayInMilliseconds = 5000;
+
+    setTimeout(() => {
+        const selector = 'a[href="#codeList"]';
+        const elementToClick = document.querySelector(selector);
+        if (elementToClick) {
+            elementToClick.click(); 
         }
-    })();
+    }, delayInMilliseconds);
     """
 
     run_cfg = CrawlerRunConfig(
@@ -42,6 +43,7 @@ async def process_url(crawler: AsyncWebCrawler, url: str) -> List[Dict[str, str]
         scroll_delay=0.3,
         simulate_user=True,
         verbose=False,
+        wait_for=".PartNumberColumn_data__mlNqG a"
     )
 
     result = await crawler.arun(url=url, config=run_cfg)
