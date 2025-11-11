@@ -1,0 +1,59 @@
+# --- General Crawler Settings ---
+crawler:
+  # Browser configuration
+  browser:
+    headless: False # Set to False for debugging, but True for production
+    user_agent_mode: "random"
+    java_script_enabled: True
+    viewport:
+      width: 1440
+      height: 900
+  
+  # Input/Output paths
+  io:
+    # These are typically passed as command-line arguments, 
+    # but we list them for context/defaulting.
+    input_csv_path: "" # Placeholder for CLI arg 1
+    output_folder: "" # Placeholder for CLI arg 2
+
+# --- Website-Specific Configuration ---
+website:
+  # Selectors for page elements
+  selectors:
+    initial_tab_click: 'a[href="#codeList"]'
+    content_element: ".PartNumberColumn_data__mlNqG a"
+    next_button: 'a[aria-label="Next Page"].Pagination_arrowRight__rRbGO'
+
+  # JavaScript code for browser interaction
+  javascript:
+    # JS to click the initial tab after the page loads
+    initial_tab_click_js: |
+      const delayInMilliseconds = 5000;
+      setTimeout(() => {
+          const selector = '%INITIAL_TAB_SELECTOR%';
+          const elementToClick = document.querySelector(selector);
+          if (elementToClick) {
+              elementToClick.click(); 
+          } 
+      }, delayInMilliseconds);
+      
+    # JS to click the next button during the pagination loop
+    next_button_click_js: |
+      const nextButtonSelector = '%NEXT_BUTTON_SELECTOR%';
+      const nextButton = document.querySelector(nextButtonSelector);
+
+      if (nextButton && nextButton.getAttribute('aria-disabled') !== 'true' && nextButton.offsetWidth > 0) {
+          nextButton.click();
+          return true;
+      }
+      return false;
+
+  # Paging/Timing values
+  timing:
+    page_timeout_ms: 45000
+    wait_for_timeout_ms: 15000
+    scroll_delay_sec: 0.3
+    # Delay after initial tab click before scraping (sec)
+    delay_after_initial_click: 10.0 
+    # Delay after 'Next' button click before scraping (sec)
+    delay_after_next_click: 5.0

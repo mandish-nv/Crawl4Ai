@@ -1,0 +1,53 @@
+# --- Configuration for crawl4ai AsyncWebCrawler ---
+
+# General Crawler Settings
+url: "https://us.misumi-ec.com/vona2/mech_screw/M1808000000/"
+output_filename: "misumi_product_links.csv"
+deep_crawl: false
+target_css_selector: ".ListItem_seriesNameLink__2EwZ6"
+base_url_for_relative: "https://us.misumi-ec.com"
+
+
+# 1. Browser Configuration (maps to BrowserConfig)
+browser_config:
+  browser_type: "chromium"
+  headless: false
+  # enable_stealth: true # Not set in original code, leaving commented for reference
+  user_agent_mode: "random"
+  ignore_https_errors: true
+  java_script_enabled: true
+  text_mode: true
+  light_mode: true
+  viewport:
+    width: 1440
+    height: 900
+
+# 2. Deep Crawl Strategy Configuration (maps to BFSDeepCrawlStrategy)
+# Note: Since max_depth is 0, this essentially disables deep crawling for `arun(deep_crawl=False)`
+deep_crawl_strategy:
+  max_depth: 0
+  include_external: false
+  # link_filter: # LinkFilter is not used in the original code, but could be configured here.
+
+# 3. Crawler Run Configuration (maps to CrawlerRunConfig)
+run_config:
+  cache_mode: "BYPASS" # Maps to CacheMode.BYPASS
+  scan_full_page: true
+  scroll_delay: 0.5
+  # wait_until: "networkidle" # Not set in original code, leaving commented for reference
+  verbose: true
+  
+  # Target elements is passed directly to arun, but listed here for completeness/reusability
+  target_elements: [".ListItem_seriesNameLink__2EwZ6"]
+  
+  page_timeout: 45000
+  delay_before_return_html: 10.0
+  mean_delay: 2.0
+  max_range: 4.0
+  remove_overlay_elements: true
+  simulate_user: true
+  override_navigator: true
+  magic: true
+  adjust_viewport_to_content: true
+  exclude_external_links: true
+  exclude_social_media_links: true
