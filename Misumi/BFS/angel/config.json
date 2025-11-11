@@ -1,0 +1,86 @@
+{
+  "default": {
+    "include_external": false,
+    "headless": false,
+    "scraping_strategy": "LXMLWebScrapingStrategy",
+    "verbose": true,
+    "scan_full_page": true,
+    "delay_before_return_html": 10.0
+  },
+  "websites": {
+    "misumi_usa": {
+        "start_url": "https://us.misumi-ec.com/vona2/mech_screw/M1808000000/",
+        "allowed_domains": [
+            "us.misumi-ec.com"
+        ],
+        "max_depth": 3,
+        "url_patterns": [
+            ".*vona2/mech_screw/.*",
+            ".*vona2/detail/.*"
+        ],
+        "keywords": {
+            "specifications": 1.0,
+            "Part Numbers": 1.0,
+            "codeList": 1.0,
+            "dimensions": 0.7,
+            "price": 0.5,
+            "drawing": 0.5,
+            "HissuCode": 1.0,
+            "tab": 1.0
+        },
+        "output_file": "misumi_product_data.json"
+      },
+    "mysamick": {
+      "start_url": "https://www.mysamick.com",
+      "max_depth": 2,
+      "allowed_domains": ["mysamick.com"],
+      "url_patterns": ["*product*", "*new_product*"],
+      "keywords": {
+        "product": 0.7,
+        "newproduct": 0.7
+      },
+      "output_file": "mysamick_crawled_results.jsonl",
+      "checkpoint_interval": 500,
+      "checkpoint_path": "mysamick_crawl.checkpoint"
+    },
+    "nbk":{
+      "start_url":"https://www.nbk1560.com/",
+      "max_depth":5,
+      "allowed_domains": ["nbk1560.com"],
+      "url_patterns": ["*products*"],
+      "keywords": {
+        "products":0.7
+      },
+      "output_file": "nbk_crawled_results.jsonl",
+      "checkpoint_interval":5000,
+      "checkpoint_path":"nbk_crawl.checkpoint"
+    },
+    "nsk":{
+      "start_url": "https://www.oss.nsk.com/products/bearings/roller-bearings.html",
+      "max_depth":4,
+      "allowed_domains": ["nsk.com"],
+      "url_patterns": ["^https://www\\.oss\\.nsk\\.com/products/bearings/roller-bearings/.*" ],
+      "keywords":{
+        "products":0.7,
+        "bearings":0.8,
+        "roller-bearings":0.9
+      },
+      "output_file":"nsk_output_roller_bearings_results_with_html.jsonl",
+      "checkpoint_interval":5000,
+      "checkpoint_path":"nsk_crawl.checkpoint"
+    },
+    "takigen":{
+      "start_url": "https://www.takigen.com/",
+      "max_depth":2,
+      "allowed_domains":["takigen.com"],
+      "url_patterns": ["*products*"],
+      "keywords":{
+        "products":0.7
+
+      },
+      "output_file":"takigen_output_results.jsonl",
+      "checkpoint_interval":5000,
+      "checkpoint_path":"takigen_crawl.checkpoint"
+    }
+  }
+}
