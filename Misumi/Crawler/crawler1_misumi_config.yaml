@@ -20,9 +20,9 @@ crawler:
 website:
   # Selectors for page elements
   selectors:
-    initial_tab_click: ''
-    content_element: ".trigger-view-product"
-    next_button: '.next'
+    initial_tab_click: 'a[href="#codeList"]'
+    content_element: ".ListItem_seriesName__sW5sN a, .PartNumberColumn_data__mlNqG a, .PartNumberColumn_data__mlNqG span"
+    next_button: 'a.Pagination_arrow__czwpl.Pagination_arrowRight__rRbGO'
 
   # JavaScript code for browser interaction
   javascript:
@@ -50,10 +50,10 @@ website:
 
   # Paging/Timing values
   timing:
-    page_timeout_ms: 45000
-    wait_for_timeout_ms: 15000
+    page_timeout_ms: 50000
+    wait_for_timeout_ms: 50000
     scroll_delay_sec: 0.3
     # Delay after initial tab click before scraping (sec)
-    delay_after_initial_click: 10.0 
+    delay_after_initial_click: 12.0 
     # Delay after 'Next' button click before scraping (sec)
     delay_after_next_click: 5.0

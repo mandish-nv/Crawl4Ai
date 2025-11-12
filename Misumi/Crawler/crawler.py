@@ -93,7 +93,7 @@ async def process_url(crawler: AsyncWebCrawler, url: str) -> List[Dict[str, str]
             run_cfg.wait_for = f"css:{CONTENT_SELECTOR}"
             run_cfg.delay_before_return_html = timing["delay_after_next_click"]
 
-        print(f"   -> Scraping Page {page_num}...")
+        print(f"  -> Scraping Page {page_num}...")
         
         result = await crawler.arun(url=url, config=run_cfg)
 
@@ -105,24 +105,36 @@ async def process_url(crawler: AsyncWebCrawler, url: str) -> List[Dict[str, str]
         soup = BeautifulSoup(result.html or "", "html.parser")
         current_page_links = 0
         for a in soup.select(CONTENT_SELECTOR):
+            title = a.text.strip()
+            # Get the URL
             href = a.get("href", "").strip()
-            title = a.get("title", "").strip()
+            
+            if not title:
+                continue # Skip if there's no title text inside <a>
+
             if href:
+                # Store title AND url
                 all_links.append({
-                    "part_number_title": title or href,
+                    "part_number_title": title,
                     "part_number_url": href
                 })
-                current_page_links += 1
+            else:
+                # Store only title if no url is attached
+                all_links.append({
+                    "part_number_title": title,
+                    "part_number_url": "" # Store an empty string for the URL
+                })
+            current_page_links += 1
 
         # 2. CHECK FOR NEXT BUTTON (Uses the configured NEXT_BUTTON_SELECTOR)
         next_button = soup.select_one(NEXT_BUTTON_SELECTOR)
         
         if next_button is None or next_button.get('aria-disabled') == 'true':
             has_next_page = False
-            print(f"   -> No 'Next' button found on page {page_num}. Ending pagination.")
+            print(f"   -> No 'Next' button found on page {page_num}. Ending pagination.")
         
         if page_num > 1 and current_page_links == 0:
-            print(f"   -> Warning: No content found on page {page_num}. Ending pagination to prevent infinite loop.")
+            print(f"   -> Warning: No content found on page {page_num}. Ending pagination to prevent infinite loop.")
             has_next_page = False
 
         page_num += 1

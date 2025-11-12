@@ -20,8 +20,8 @@ crawler:
 website:
   # Selectors for page elements
   selectors:
-    initial_tab_click: ''
-    content_element: ".subcategory a"
+    initial_tab_click: '#children-product-on-show-more'
+    content_element: ".subcategory a, .trigger-view-product, tr td strong a"
     next_button: '.next'
 
   # JavaScript code for browser interaction
