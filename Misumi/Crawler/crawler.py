@@ -25,7 +25,6 @@ def load_config(config_path: str):
         sys.exit(1)
 
 def read_input_csv(input_filename: str) -> List[Dict[str, str]]:
-    # ... (function remains the same as it's independent of website config)
     rows = []
     try:
         with open(input_filename, newline="", encoding="utf-8") as f:
@@ -39,10 +38,10 @@ def read_input_csv(input_filename: str) -> List[Dict[str, str]]:
     return rows
 
 
-async def process_url(crawler: AsyncWebCrawler, url: str) -> List[Dict[str, str]]:
+async def process_url(crawler: AsyncWebCrawler, url: str) -> tuple[List[Dict[str, str]], str]:
     """
     Open a product page, click the Part Numbers tab, and execute a click-and-scrape loop 
-    for all paginated pages.
+    for all paginated pages. Returns the scraped links AND the cleaned HTML.
     """
     # Get config values
     cfg = CONFIG["website"]
@@ -68,13 +67,15 @@ async def process_url(crawler: AsyncWebCrawler, url: str) -> List[Dict[str, str]
     page_num = 1
     has_next_page = True
     
+    cleaned_html: str = "" # New variable to store the cleaned content
+    
     while has_next_page:
         # Configuration for the current iteration (from config)
         run_cfg = CrawlerRunConfig(
             url=url,
             session_id=session_id,
             cache_mode=CacheMode.BYPASS,
-            target_elements=[CONTENT_SELECTOR],
+            # target_elements=[CONTENT_SELECTOR],
             page_timeout=timing["page_timeout_ms"],
             wait_for=CONTENT_SELECTOR, 
             wait_for_timeout=timing["wait_for_timeout_ms"],
@@ -87,19 +88,30 @@ async def process_url(crawler: AsyncWebCrawler, url: str) -> List[Dict[str, str]
         if page_num == 1:
             run_cfg.js_code = [js_initial_click]
             run_cfg.delay_before_return_html = timing["delay_after_initial_click"]
+            
+            # 💡 ADDITION: Configure content_transformer for page 1
+            # We use 'markdown' to get cleaned text in Markdown format
+            run_cfg.content_transformer = None
         else:
             run_cfg.js_code = [JS_NEXT_BUTTON_CLICK]
             run_cfg.js_only = True
             run_cfg.wait_for = f"css:{CONTENT_SELECTOR}"
             run_cfg.delay_before_return_html = timing["delay_after_next_click"]
+            # 💡 ADDITION: Remove content_transformer for subsequent pages
+            run_cfg.content_transformer = None 
 
-        print(f"  -> Scraping Page {page_num}...")
+        print(f"  -> Scraping Page {page_num}...")
         
         result = await crawler.arun(url=url, config=run_cfg)
 
         if not result.success:
             print(f"❌ Failed to crawl {url} on page {page_num}: {result.error_message}")
             break
+
+        # 💡 ADDITION: Store the cleaned content from the first page
+        if page_num == 1:
+            cleaned_html = result.cleaned_html or "" # This will contain the Markdown content
+            print("  -> Cleaned HTML (Markdown) extracted.")
 
         # 1. SCRAPE CONTENT from the current page (Uses the configured CONTENT_SELECTOR)
         soup = BeautifulSoup(result.html or "", "html.parser")
@@ -140,8 +152,7 @@ async def process_url(crawler: AsyncWebCrawler, url: str) -> List[Dict[str, str]
         page_num += 1
     
     await crawler.crawler_strategy.kill_session(session_id)
-    return all_links
-
+    return all_links, cleaned_html 
 
 async def main(input_csv: str, output_folder: str):
     rows = read_input_csv(input_csv)
@@ -149,7 +160,10 @@ async def main(input_csv: str, output_folder: str):
         print("No URLs to process.")
         return
 
-    os.makedirs(output_folder, exist_ok=True)
+    # 💡 ADDITION: Create separate folder for MD files
+    md_output_folder = os.path.join(output_folder, "markdown_pages") 
+    os.makedirs(output_folder, exist_ok=True) # CSV output folder
+    os.makedirs(md_output_folder, exist_ok=True) # Markdown output folder
     
     # Get browser config from the loaded CONFIG global
     browser_cfg_data = CONFIG["crawler"]["browser"]
@@ -164,27 +178,42 @@ async def main(input_csv: str, output_folder: str):
         for row in rows:
             title = row["title"]
             url = row["url"]
+            # Sanitization for filename
             safe_title = "".join(c for c in title if c.isalnum() or c in (" ", "_", "-")).rstrip()
-            output_file = os.path.join(output_folder, f"{safe_title}.csv")
+            safe_title = safe_title.replace(" ", "_") # Use underscores for spaces in the filename
+            
+            # Output paths
+            csv_output_file = os.path.join(output_folder, f"{safe_title}.csv")
+            md_output_file = os.path.join(md_output_folder, f"{safe_title}.md") # 💡 NEW MD filename
 
             print(f"\n🔍 Crawling: {url}")
-            part_links = await process_url(crawler, url) 
+            
+            # 💡 MODIFIED CALL: Expect two return values
+            part_links, cleaned_html = await process_url(crawler, url) 
 
+            # --- Save Cleaned Markdown ---
+            if cleaned_html:
+                with open(md_output_file, "w", encoding="utf-8") as f:
+                    f.write(cleaned_html)
+                print(f"✅ Saved cleaned page content → {md_output_file}")
+            else:
+                print(f"⚠️ Could not extract clean content for {title}")
+
+            # --- Save Scraped Links (Original Logic) ---
             if not part_links:
                 print(f"⚠️ No part numbers found for {title}")
                 continue
 
-            with open(output_file, "w", newline="", encoding="utf-8") as f:
+            with open(csv_output_file, "w", newline="", encoding="utf-8") as f:
                 writer = csv.DictWriter(f, fieldnames=["part_number_title", "part_number_url"])
                 writer.writeheader()
                 writer.writerows(part_links)
 
-            print(f"✅ Saved {len(part_links)} part numbers → {output_file}")
-
+            print(f"✅ Saved {len(part_links)} part numbers → {csv_output_file}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        # python crawler.py crawler1_nsk_config.yaml test.csv test
+        # python crawler.py crawler1_misumi_config.yaml test.csv test
         print("Usage: python crawler.py <config.yaml> <input.csv> <output_folder>")
         sys.exit(1)
         
